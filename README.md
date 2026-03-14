@@ -4,9 +4,9 @@
 
 ![CoreInventory](https://img.shields.io/badge/CoreInventory-Inventory%20Management%20System-blue?style=for-the-badge)
 
-**A lightweight inventory and warehouse management system for tracking products, stock movements, and warehouse operations.**
+**Lightweight inventory and warehouse management platform for tracking products, stock movements, and warehouse operations.**
 
-<p align="center">
+<p>
 
 <a href="https://react.dev/">
 <img src="https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
@@ -44,6 +44,8 @@
 
 </div>
 
+---
+
 # 📑 Table of Contents
 
 - 📌 [Project Overview](#project-overview)
@@ -51,14 +53,13 @@
 - ⚙ [Runtime Topology](#runtime-topology)
 - 🧰 [Tech Stack](#tech-stack)
 - 📂 [Project Structure](#project-structure)
-- 🚀 [Quick Start (Docker)](#quick-start-docker)
-- 💻 [Quick Start (Development Mode)](#quick-start-development-mode)
+- 🚀 [Quick Start](#quick-start)
 - ⚙ [Backend Architecture](#backend-architecture)
 - ⚛ [Frontend Architecture](#frontend-architecture)
 - 🗄 [Database Design](#database-design)
 - 🔗 [API Endpoints](#api-endpoints)
-- 🔐 [Authentication & Roles](#authentication-roles)
-- 📊 [Entity Relationship Diagram](#entity-relationship-diagram)
+- 🔐 [Authentication & Roles](#authentication--roles)
+- 📊 [ER Diagram](#er-diagram)
 - 🖼 [Screenshots](#screenshots)
 
 ---
@@ -67,16 +68,16 @@
 
 # 📌 Project Overview
 
-CoreInventory is a **lightweight inventory and warehouse management platform** designed to manage:
+CoreInventory is a **lightweight inventory and warehouse management system** for managing:
 
-- 📦 **Product Catalog** – maintain and organize product information
-- 🔄 **Stock Movements** – track inventory inflow and outflow
-- 📍 **Warehouse Locations** – manage storage locations and warehouses
-- ✔ **Operation Validation** – verify and approve stock operations
-- 📊 **Dashboard Insights** – view analytics and inventory summaries
-- 👥 **Role-Based Administration** – manage users and permissions
+- 📦 Product catalog
+- 🔄 Stock movements
+- 📍 Warehouse locations
+- ✔ Operation validation
+- 📊 Dashboard insights
+- 👥 Role-based access
 
-It supports **Admin and User roles**, where some actions such as **operation validation and settings management are restricted to admins**.
+The system supports **Admin and User roles**, where administrative actions such as **operation validation and settings management are restricted to admins**.
 
 ---
 
@@ -84,7 +85,7 @@ It supports **Admin and User roles**, where some actions such as **operation val
 
 # 🏗 System Architecture
 
-The application follows a **3-tier architecture**:
+CoreInventory follows a **3-tier architecture** separating UI, business logic, and data storage.
 
 ```
 Frontend (React + Vite)
@@ -96,7 +97,8 @@ Backend API (Spring Boot)
 Database (PostgreSQL)
 ```
 
-Frontend communicates with backend through **REST APIs**, while backend interacts with database using **Spring Data JPA**.
+- Frontend communicates with backend using **REST APIs**
+- Backend interacts with database via **Spring Data JPA**
 
 ---
 
@@ -104,22 +106,20 @@ Frontend communicates with backend through **REST APIs**, while backend interact
 
 # ⚙ Runtime Topology
 
-The system runs three main services using Docker:
+Services are orchestrated using **Docker Compose**.
 
 ```
-Frontend (Vite React)
-        │
-        ▼
-Backend (Spring Boot REST API)
-        │
-        ▼
-PostgreSQL Database
+Frontend (Vite)
+      │
+      ▼
+Backend (Spring Boot)
+      │
+      ▼
+PostgreSQL
 ```
 
 - Frontend → HTTP requests → Backend  
-- Backend → JPA queries → PostgreSQL  
-
-Docker Compose orchestrates all services.
+- Backend → JPA queries → Database  
 
 ---
 
@@ -127,27 +127,23 @@ Docker Compose orchestrates all services.
 
 # 🧰 Tech Stack
 
-## Frontend
-
+### Frontend
 - React
 - TypeScript
 - Vite
 - Context API
 - Axios
 
-## Backend
-
+### Backend
 - Spring Boot
 - Spring Security
 - Spring Data JPA
 - JWT Authentication
 
-## Database
-
+### Database
 - PostgreSQL
 
-## DevOps
-
+### DevOps
 - Docker
 - Docker Compose
 
@@ -165,8 +161,7 @@ CoreInventory
 │   ├── services
 │   ├── repositories
 │   ├── models
-│   ├── config
-│   └── utils
+│   └── config
 │
 ├── frontend
 │   ├── components
@@ -183,48 +178,41 @@ CoreInventory
 
 ---
 
-<a id="quick-start-docker"></a>
+<a id="quick-start"></a>
 
-# 🚀 Quick Start (Docker)
+# 🚀 Quick Start
 
-### Requirements
+## Run with Docker
 
-- Docker  
-- Docker Compose  
+Requirements:
 
-### Run the project
+- Docker
+- Docker Compose
+
+Start project:
 
 ```bash
 docker compose up --build
 ```
 
-### Stop containers
+Stop containers:
 
 ```bash
 docker compose down -v
 ```
 
-### Access URLs
-
-Frontend
+Access:
 
 ```
-http://localhost:5173
-```
-
-Backend API
-
-```
-http://localhost:8080
+Frontend → http://localhost:5173
+Backend → http://localhost:8080
 ```
 
 ---
 
-<a id="quick-start-development-mode"></a>
+## Development Mode
 
-# 💻 Quick Start (Development Mode)
-
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -232,40 +220,18 @@ npm install
 npm run dev
 ```
 
-## Backend
+### Backend
 
 Requirements:
 
 - Java 17+
 - Maven
 
-Run backend:
+Run server:
 
 ```bash
 cd backend
-./mvnw spring-boot:run
-```
-
-or
-
-```bash
 mvn spring-boot:run
-```
-
----
-
-## Database
-
-Use PostgreSQL and execute schema from:
-
-```
-database/init.sql
-```
-
-Configure database connection in:
-
-```
-backend/src/main/resources/application.properties
 ```
 
 ---
@@ -274,46 +240,13 @@ backend/src/main/resources/application.properties
 
 # ⚙ Backend Architecture
 
-The backend follows **layered architecture**:
+Backend follows **layered architecture**:
 
 ```
-Controller
-   │
-   ▼
-Service
-   │
-   ▼
-Repository
-   │
-   ▼
-Database
+Controller → Service → Repository → Database
 ```
 
-### Controllers
-
-Expose REST endpoints such as:
-
-- Auth
-- Products
-- Operations
-- Dashboard
-- Settings
-
-### Services
-
-Contain **business logic**, such as:
-
-- product management
-- stock movement
-- validation rules
-
-### Repositories
-
-Spring Data JPA interfaces that interact with the database.
-
-### Models
-
-Main entities include:
+### Main Entities
 
 - Product
 - Category
@@ -329,51 +262,20 @@ Main entities include:
 
 # ⚛ Frontend Architecture
 
-Frontend is built using **React + TypeScript**.
-
-### Entry
+React application structure:
 
 ```
 main.tsx
   → App.tsx
       → Pages
+      → Components
 ```
 
-### Layout
+Key modules:
 
-```
-layouts/MainLayout.tsx
-```
-
-Controls navigation and layout depending on user role.
-
----
-
-### Authentication Context
-
-```
-context/AuthContext.tsx
-```
-
-Responsible for:
-
-- storing user
-- storing JWT token
-- protecting routes
-
----
-
-### API Layer
-
-```
-services/api.ts
-```
-
-Handles:
-
-- API requests
-- authentication headers
-- error handling
+- **AuthContext** – manages authentication & JWT
+- **API Service** – centralized API requests
+- **Layouts** – role-based navigation
 
 ---
 
@@ -381,13 +283,13 @@ Handles:
 
 # 🗄 Database Design
 
-Database is initialized using:
+Database schema and seed data are defined in:
 
 ```
 database/init.sql
 ```
 
-It creates and seeds tables for:
+Main tables include:
 
 - Users
 - Roles
@@ -395,23 +297,8 @@ It creates and seeds tables for:
 - Categories
 - Locations
 - Stock
-- Reorder Rules
-- Stock Documents
-
----
-
-<a id="entity-relationship-diagram"></a>
-
-# 📊 Entity Relationship Diagram
-
-### ERD
-
-![ER Diagram 1](docs/er1.png)
-
-![ER Diagram 2](docs/er2.png)
-
-![ER Diagram 3](docs/er3.png)
-
+- ReorderRules
+- StockDocuments
 
 ---
 
@@ -419,25 +306,20 @@ It creates and seeds tables for:
 
 # 🔗 API Endpoints
 
-## Authentication
+### Authentication
 
 ```
 POST /auth/login
 POST /auth/signup
 ```
 
----
-
-## Dashboard
+### Dashboard
 
 ```
 GET /dashboard/summary
-GET /operations
 ```
 
----
-
-## Operations
+### Operations
 
 ```
 GET /operations
@@ -446,11 +328,9 @@ PUT /operations/{id}
 POST /operations/{id}/validate
 ```
 
-(Admin only)
+(Admin only validation)
 
----
-
-## Products
+### Products
 
 ```
 GET /products
@@ -461,7 +341,7 @@ GET /locations
 
 ---
 
-<a id="authentication-roles"></a>
+<a id="authentication--roles"></a>
 
 # 🔐 Authentication & Roles
 
@@ -470,25 +350,25 @@ Authentication uses **JWT tokens**.
 ### Flow
 
 ```
-User Login
-   │
-   ▼
-Backend generates JWT
-   │
-   ▼
-Frontend stores token (localStorage)
-   │
-   ▼
-Token attached to API requests
+User Login → JWT Generated → Stored in Frontend → Attached to API Requests
 ```
-
-### Roles
 
 | Role | Permissions |
 |-----|-------------|
-Admin | Validate operations, manage settings |
-User | View products, create operations |
+| Admin | Validate operations, manage settings |
+| User | View products, create operations |
 
+---
+
+<a id="er-diagram"></a>
+
+# 📊 ER Diagram
+
+![ER Diagram 1](docs/er1.png)
+
+![ER Diagram 2](docs/er2.png)
+
+![ER Diagram 3](docs/er3.png)
 
 ---
 
@@ -497,19 +377,10 @@ User | View products, create operations |
 # 🖼 Screenshots
 
 ### Dashboard
-
 ![Dashboard](docs/dashboard.png)
 
----
-
 ### Products
-
 ![Products](docs/products.png)
 
----
-
 ### Operations
-
 ![Operations](docs/operations.png)
-
----
