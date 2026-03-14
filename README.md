@@ -1,100 +1,86 @@
-<!-- # CoreInventory
+<div align="center">
 
-Lightweight inventory and warehouse management stack: React/Vite frontend, Spring Boot backend, PostgreSQL database. Run locally with Docker or start services separately for dev.
+# 📦 CoreInventory
 
-## Quick start (Docker)
-- Requirements: Docker + docker compose
-- From repo root:
-	- Build & run: `docker compose up --build`
-	- Stop & clean: `docker compose down -v`
-- Frontend: http://localhost:5173 (proxied to backend)
-- Backend API: http://localhost:8080
+![CoreInventory](https://img.shields.io/badge/CoreInventory-Inventory%20Management%20System-blue?style=for-the-badge)
 
-## Quick start (dev mode)
-Frontend
-- `cd frontend`
-- Install deps: `npm install`
-- Run dev server: `npm run dev`
+**A lightweight inventory and warehouse management system for tracking products, stock movements, and warehouse operations.**
 
-Backend
-- `cd backend`
-- Java 17+, Maven
-- Run: `./mvnw spring-boot:run` (or `mvn spring-boot:run`)
+<p align="center">
 
-Database
-- PostgreSQL with schema/seed from `database/init.sql`
-- Configure connection in `backend/src/main/resources/application.properties`
+<a href="https://react.dev/">
+<img src="https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+</a>
 
-## Architecture at a glance
-- Frontend: React + TypeScript (Vite). Auth context manages JWT; pages fetch via `src/services/api.ts`.
-- Backend: Spring Boot (REST). Controllers -> Services -> Repositories (JPA) -> Postgres. Security config handles auth/roles.
-- Database: Postgres seeded with products, locations, stock documents, reorder rules.
+<a href="https://vitejs.dev/">
+<img src="https://img.shields.io/badge/Vite-Frontend-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
+</a>
 
-## Directory hints
-```
-backend/        Spring Boot app (controllers, services, models, repos, config)
-frontend/       React/Vite client (pages, components, auth context, API client)
-database/       init.sql seed + schema
-docker-compose.yml  Orchestrates frontend, backend, and Postgres
-``` 
+<a href="https://spring.io/projects/spring-boot">
+<img src="https://img.shields.io/badge/SpringBoot-Backend-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
+</a>
 
-## Key endpoints
-- Auth: `/auth/login`, `/auth/signup`
-- Dashboard: `/dashboard/summary`, `/operations`
-- Operations: `/operations`, `/operations/{id}/validate` (admin)
-- Products: `/products`, `/categories`, `/locations`
+<a href="https://www.java.com/">
+<img src="https://img.shields.io/badge/Java-17+-f89820?style=for-the-badge&logo=java&logoColor=white"/>
+</a>
 
-## Notes
-- Default admin/user seeds are in `database/init.sql`.
-- Role-based UI hides admin-only actions for non-admin users. -->
+<a href="https://www.postgresql.org/">
+<img src="https://img.shields.io/badge/PostgreSQL-Database-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
+</a>
 
+<a href="https://www.docker.com/">
+<img src="https://img.shields.io/badge/Docker-Containerization-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+</a>
 
-# CoreInventory
+<a href="https://jwt.io/">
+<img src="https://img.shields.io/badge/JWT-Authentication-black?style=for-the-badge&logo=jsonwebtokens"/>
+</a>
 
-Lightweight **Inventory & Warehouse Management System** built with:
+<a href="https://spring.io/projects/spring-security">
+<img src="https://img.shields.io/badge/Spring_Security-Auth-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white"/>
+</a>
 
-- ⚛️ React + Vite (Frontend)
-- ☕ Spring Boot (Backend)
-- 🐘 PostgreSQL (Database)
-- 🐳 Docker (Deployment)
+</p>
 
-The system manages **products, warehouse locations, stock movements, operations validation, and inventory insights** with **role-based access control**.
-
----
+</div>
 
 # 📑 Table of Contents
 
-- [Project Overview](#project-overview)
-- [System Architecture](#system-architecture)
-- [Runtime Topology](#runtime-topology)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Quick Start (Docker)](#quick-start-docker)
-- [Quick Start (Development Mode)](#quick-start-development-mode)
-- [Backend Architecture](#backend-architecture)
-- [Frontend Architecture](#frontend-architecture)
-- [Database Design](#database-design)
-- [API Endpoints](#api-endpoints)
-- [Authentication & Roles](#authentication--roles)
-- [Entity Relationship Diagram](#entity-relationship-diagram)
-- [Screenshots](#screenshots)
+- 📌 [Project Overview](#project-overview)
+- 🏗 [System Architecture](#system-architecture)
+- ⚙ [Runtime Topology](#runtime-topology)
+- 🧰 [Tech Stack](#tech-stack)
+- 📂 [Project Structure](#project-structure)
+- 🚀 [Quick Start (Docker)](#quick-start-docker)
+- 💻 [Quick Start (Development Mode)](#quick-start-development-mode)
+- ⚙ [Backend Architecture](#backend-architecture)
+- ⚛ [Frontend Architecture](#frontend-architecture)
+- 🗄 [Database Design](#database-design)
+- 🔗 [API Endpoints](#api-endpoints)
+- 🔐 [Authentication & Roles](#authentication-roles)
+- 📊 [Entity Relationship Diagram](#entity-relationship-diagram)
+- 🖼 [Screenshots](#screenshots)
 
 ---
+
+<a id="project-overview"></a>
 
 # 📌 Project Overview
 
 CoreInventory is a **lightweight inventory and warehouse management platform** designed to manage:
 
-- Product catalog
-- Stock movements
-- Warehouse locations
-- Operation validation
-- Dashboard insights
-- Role-based administration
+- 📦 **Product Catalog** – maintain and organize product information
+- 🔄 **Stock Movements** – track inventory inflow and outflow
+- 📍 **Warehouse Locations** – manage storage locations and warehouses
+- ✔ **Operation Validation** – verify and approve stock operations
+- 📊 **Dashboard Insights** – view analytics and inventory summaries
+- 👥 **Role-Based Administration** – manage users and permissions
 
 It supports **Admin and User roles**, where some actions such as **operation validation and settings management are restricted to admins**.
 
 ---
+
+<a id="system-architecture"></a>
 
 # 🏗 System Architecture
 
@@ -114,6 +100,8 @@ Frontend communicates with backend through **REST APIs**, while backend interact
 
 ---
 
+<a id="runtime-topology"></a>
+
 # ⚙ Runtime Topology
 
 The system runs three main services using Docker:
@@ -128,12 +116,14 @@ Backend (Spring Boot REST API)
 PostgreSQL Database
 ```
 
-- Frontend → HTTP requests → Backend
-- Backend → JPA queries → PostgreSQL
+- Frontend → HTTP requests → Backend  
+- Backend → JPA queries → PostgreSQL  
 
 Docker Compose orchestrates all services.
 
 ---
+
+<a id="tech-stack"></a>
 
 # 🧰 Tech Stack
 
@@ -163,6 +153,8 @@ Docker Compose orchestrates all services.
 
 ---
 
+<a id="project-structure"></a>
+
 # 📂 Project Structure
 
 ```
@@ -191,12 +183,14 @@ CoreInventory
 
 ---
 
+<a id="quick-start-docker"></a>
+
 # 🚀 Quick Start (Docker)
 
 ### Requirements
 
-- Docker
-- Docker Compose
+- Docker  
+- Docker Compose  
 
 ### Run the project
 
@@ -225,6 +219,8 @@ http://localhost:8080
 ```
 
 ---
+
+<a id="quick-start-development-mode"></a>
 
 # 💻 Quick Start (Development Mode)
 
@@ -273,6 +269,8 @@ backend/src/main/resources/application.properties
 ```
 
 ---
+
+<a id="backend-architecture"></a>
 
 # ⚙ Backend Architecture
 
@@ -325,14 +323,9 @@ Main entities include:
 - ReorderRule
 - Contact
 
-### Security
-
-Spring Security manages:
-
-- JWT authentication
-- role based authorization
-
 ---
+
+<a id="frontend-architecture"></a>
 
 # ⚛ Frontend Architecture
 
@@ -384,23 +377,7 @@ Handles:
 
 ---
 
-### Pages
-
-```
-pages/
-```
-
-Examples:
-
-- Dashboard
-- Products
-- Operations
-- Move History
-- Settings
-- Profile
-- Login / Signup
-
----
+<a id="database-design"></a>
 
 # 🗄 Database Design
 
@@ -422,6 +399,23 @@ It creates and seeds tables for:
 - Stock Documents
 
 ---
+
+<a id="entity-relationship-diagram"></a>
+
+# 📊 Entity Relationship Diagram
+
+### ERD
+
+![ER Diagram 1](docs/er1.png)
+
+![ER Diagram 2](docs/er2.png)
+
+![ER Diagram 3](docs/er3.png)
+
+
+---
+
+<a id="api-endpoints"></a>
 
 # 🔗 API Endpoints
 
@@ -467,6 +461,8 @@ GET /locations
 
 ---
 
+<a id="authentication-roles"></a>
+
 # 🔐 Authentication & Roles
 
 Authentication uses **JWT tokens**.
@@ -493,24 +489,10 @@ Token attached to API requests
 Admin | Validate operations, manage settings |
 User | View products, create operations |
 
+
 ---
 
-# 📊 Entity Relationship Diagram
-
-Add your ER diagrams here.
-
-Example:
-
-```
-docs/erd.png
-docs/schema.png
-```
-
-### ERD
-
-![ER Diagram 1](docs/er1.png)
-![ER Diagram 2](docs/er2.png)
-![ER Diagram 3](docs/er3.png)
+<a id="screenshots"></a>
 
 # 🖼 Screenshots
 
