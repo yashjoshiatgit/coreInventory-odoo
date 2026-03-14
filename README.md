@@ -508,13 +508,9 @@ docs/schema.png
 
 ### ERD
 
-![ER Diagram](docs/erd.png)
-
-### Database Schema
-
-![Database Schema](docs/schema.png)
-
----
+![ER Diagram 1](docs/er1.png)
+![ER Diagram 2](docs/er2.png)
+![ER Diagram 3](docs/er3.png)
 
 # 🖼 Screenshots
 
@@ -533,11 +529,5 @@ docs/schema.png
 ### Operations
 
 ![Operations](docs/operations.png)
-
----
-
-### Login
-
-![Login](docs/login.png)
 
 ---
